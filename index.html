@@ -4,29 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee</title>
-    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
+    <script src="js/db.js" type="module"></script>
+    <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
   <header class="header-main">
     <nav class="container-nav">
       
       <div class="nav-group">
-        <a href="#cafes" class="border-rounded">Cafés</a>
-        <a href="#assinaturas" class="border-rounded">Assinaturas</a>
-        <a href="#acessorios" class="border-rounded">Acessórios</a>
+        <a href="#cafes" class="nav-link">Cafés</a>
+        <a href="#assinaturas" class="nav-link">Assinaturas</a>
+        <a href="#acessorios" class="nav-link">Acessórios</a>
       </div>
   
       <div class="nav-logo">
         <a href="/">
-          <img src="logo.svg" alt="Café Especial Logo">
+          <!-- <img src="logo.svg" alt="Café Especial Logo"> -->
         </a>
       </div>
   
       <div class="nav-group">
-        <a href="#sobre" class="border-rounded">Sobre</a>
-        <button class="icon-btn" class="border-rounded">Busca</button>
-        <a href="#login" class="border-rounded">Login</a>
-        <button class="cart-btn border-rounded">
+        <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#login" id="login" class="nav-link">Login</a>
+        <button>
           Carrinho <span>(0)</span>
         </button>
       </div>
