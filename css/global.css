@@ -1,13 +1,68 @@
-body, html, button, a {
+body, html, input ,button, a {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     all: unset;
 }
+h1 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #a7a3a3;
-    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    background-image: url('../assets/img/login-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #1a1a1a;
+    height: 100vh;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff81 inset !important;
+    -webkit-text-fill-color: #000000 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+input {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #333;
+    margin-bottom: 1rem;
+    width: 70%;
+}
+input::placeholder {
+    color: #333333;
+    font-style: italic;
+}
+input:focus {
+    border-color: rgb(255, 255, 255);
+    box-shadow: 0 0 2px rgba(255, 254, 254, 0.658);
+}
+input:focus::placeholder {
+    color: transparent;
+}
+
+button {
+    background-color: #4B2C20 /* #333*/;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease-out;
+}
+button:hover {
+    background-color:  #6d402f;
+    transform: translateY(-1px);
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Navegação */
@@ -37,4 +92,54 @@ body {
     text-decoration-color: #f5f5f5;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     transform: translateY(-1px);
+}
+
+/* Login */
+.login-container {
+    background-color: #ffffff50;
+    backdrop-filter: blur(5px);
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 30rem;
+    height: auto;
+    margin: 0 auto;
+}
+
+/* Register */
+.register-container {
+    background-color: #ffffff50;
+    backdrop-filter: blur(5px);
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 30rem;
+    height: auto;
+    margin: 0 auto;
+}
+.hidden {
+    display: none;
+}
+
+/* Definição da animação */
+@keyframes surgirDoCentro {
+    0% {
+        opacity: 0;
+        transform: scale(0.7); /* Começa menor */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1); /* Termina no tamanho real */
+    }
+}
+
+/* Classe que aplica a animação */
+.animar-entrada {
+    animation: surgirDoCentro 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Garante que o container de vidro se ajuste suavemente à altura */
+.glass-card {
+    transition: all 0.5s ease-in-out; /* Isso faz o card "esticar" suavemente */
+    overflow: hidden;
 }
