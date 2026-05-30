@@ -4,14 +4,16 @@ const dbProdutos = new PouchDB('coffee_produtos');
 const dbUsuarios = new PouchDB('coffee_usuarios');
 
 async function popularBancoInicial() {
+    // DESCOMENTE A LINHA ABAIXO PARA RESETAR O BANCO UMA VEZ:
+    //await dbProdutos.destroy();
     // Verifica se já existem produtos para não duplicar toda vez que atualizar a página
     const info = await dbProdutos.info();
     
     if (info.doc_count === 0) {
         const cafesIniciais = [
-            new ProdutoCafe('1', 'Java Roast Especial', 45.90, 'Grãos', ['Nozes', 'Cacau'], 'Média', 'assets/img/cafe1.png'),
-            new ProdutoCafe('2', 'Arabica Gold', 52.00, 'Grãos', ['Frutado', 'Cítrico'], 'Clara', 'assets/img/cafe2.png'),
-            new ProdutoCafe('3', 'Expresso Intenso', 38.00, 'Cápsulas', ['Caramelo'], 'Escura', 'assets/img/cafe3.png')
+            new ProdutoCafe('1', 'Coffee Java Roast Especial 250g', 45.90, 'Grãos', ['Nozes', 'Cacau'], 'Média', 'assets/img/cafe.jpg'),
+            new ProdutoCafe('2', 'Coffee Arabica Gold 250g', 52.00, 'Grãos', ['Frutado', 'Cítrico'], 'Clara', 'assets/img/cafe.jpg'),
+            new ProdutoCafe('3', 'Coffee Expresso Intenso 250g', 38.00, 'Cápsulas', ['Caramelo'], 'Escura', 'assets/img/cafe.jpg')
         ];
 
         try {
@@ -23,7 +25,7 @@ async function popularBancoInicial() {
     }
 }
 
-async function buscarTodosProdutos() {
+export async function buscarTodosProdutos() {
     try {
         const resultado = await dbProdutos.allDocs({ include_docs: true });
         // Mapeia o resultado para retornar apenas os dados do documento

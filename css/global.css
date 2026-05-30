@@ -1,4 +1,4 @@
-body, html, input ,button, a {
+html, input ,button, a {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,12 +12,7 @@ h1 {
 body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    background-image: url('../assets/img/login-background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #1a1a1a;
-    height: 100vh;
+    margin: 0 auto;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -57,12 +52,32 @@ button:hover {
     background-color:  #6d402f;
     transform: translateY(-1px);
 }
+.btn-comprar{
+    background-color: #ffffff6a;
+    min-width: 90%;
+}
 
+header {
+    position: absolute; /* Ou fixed, se quiser que ele siga o scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Garante que ele fique ACIMA do vídeo e do overlay */
+    background: transparent; /* Para mostrar o vídeo por baixo */
+}
 .centered {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.fundo-login{
+    background-image: url('../assets/img/login-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #1a1a1a;
+    height: 100vh;
 }
 
 /* Navegação */
@@ -70,25 +85,22 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    margin: 0 0.5rem;
 }
-  
 .nav-group {
     display: flex;
     gap: 20px; 
     flex: 1;
 }
 .nav-group:last-child { justify-content: flex-end;}
-
 .nav-link {
-    color: #333;
+    color: #f5f5f5;
     font-weight: 500;
     cursor: pointer;
     transition: text-decoration 0.5s ease, color 0.3s ease, text-shadow 0.5s ease, transform 0.3s ease-out;
 }
 .nav-link:hover {
     text-decoration: underline;
-    color: #f5f5f5;
     text-decoration-color: #f5f5f5;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     transform: translateY(-1px);
@@ -117,11 +129,9 @@ button:hover {
     height: auto;
     margin: 0 auto;
 }
-.hidden {
-    display: none;
-}
+.hidden { display: none; }
 
-/* Definição da animação */
+/* Animação Login */
 @keyframes surgirDoCentro {
     0% {
         opacity: 0;
@@ -132,14 +142,91 @@ button:hover {
         transform: scale(1); /* Termina no tamanho real */
     }
 }
-
-/* Classe que aplica a animação */
 .animar-entrada {
     animation: surgirDoCentro 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
-
-/* Garante que o container de vidro se ajuste suavemente à altura */
 .glass-card {
-    transition: all 0.5s ease-in-out; /* Isso faz o card "esticar" suavemente */
+    transition: all 0.10s ease-in-out;
     overflow: hidden;
+}
+
+ /* Index */
+.fa-cart-shopping {
+    color: #f5f5f5;
+    transition: transform 0.2s;
+}
+.fa-cart-shopping:hover {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+    cursor: pointer;
+}
+.fa-cart-shopping:focus{
+    color: #f5f5f5;
+    outline: 2px solid  #f5f5f5; 
+}
+
+.backgorund-video {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.backgorund-video::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10rem;
+    background: linear-gradient(to bottom, transparent, #000000);
+    z-index: 2;
+}
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz o vídeo agir como um background-size: cover */
+    z-index: -2; /* Fica atrás de tudo */
+}
+ /* BEST SELERS */
+.section-best-selers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    width: 100%;
+    background-color: #000000;
+}
+.section-best-selers > div {
+    min-width: 95vw;
+    min-height: 70vh;
+    border: solid #fff 1rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-assinatura {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #000000;
+    color: #fff;
+    padding-top: 2rem;
+}
+
+.section-assinatura > img {
+    max-height: 35rem;
+    min-height: 35rem;
 }

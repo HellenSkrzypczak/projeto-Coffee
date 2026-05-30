@@ -6,12 +6,16 @@
     <title>Coffee</title>
     <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
     <script src="js/db.js" type="module"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <script src="js/pages/produto.js" type="module"></script>
 </head>
 <body>
-  <header class="header-main">
+  <header>
     <nav class="container-nav">
-      
       <div class="nav-group">
         <a href="#cafes" class="nav-link">Cafés</a>
         <a href="#assinaturas" class="nav-link">Assinaturas</a>
@@ -19,29 +23,48 @@
       </div>
   
       <div class="nav-logo">
-        <a href="/">
-          <!-- <img src="logo.svg" alt="Café Especial Logo"> -->
+        <a href="index.html">
+          <img src="assets/img/icon.png" alt="Café Coffee Logo" style="height: 50px; cursor: pointer;">
         </a>
       </div>
   
       <div class="nav-group">
         <a href="#sobre" class="nav-link">Sobre</a>
         <a href="login.html" id="login" class="nav-link">Login</a>
-        <button>
-          Carrinho <span>(0)</span>
-        </button>
+        <div class="cart-container">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="badge">0</span>
+        </div>
       </div>
   
     </nav>
   </header>
-  <nav>
+  <section class="backgorund-video">
+    <video autoplay muted loop playsinline poster="assets/img/login-background.jpg" class="video-bg">
+        <source src="assets/video/video-index.mp4" type="video/mp4">
+        <source src="assets/video/video-index.webm" type="video/webm"> 
+    </video>
+  </section>
 
-  </nav>
-  <main>
+  <section class="section-best-selers">
+    <div style="background-color: aliceblue;">
+      <h2 class="mb-6">Produtos queridinhos! ☕</h2>
+      <div id="container-cards" class="cards"></div>
+    </div>
+  </section>
 
-  </main> 
-  <footer>
-    
-  </footer> 
+  <section class="section-assinatura">
+    <div>
+      <h3>Assinatura Coffe</h3>
+      <p>Faça parte do clube de assinaturas Coffee e garanta benefícios exclusivos. Conheça nossos planos e se surpreenda.</p>
+      <button>CONHEÇA</button>
+    </div>
+    <img src="assets/img/coffe-assinatura.jpg" alt="Embalagens de café da marca Coffee">
+
+  <section class="section-produts">
+    <div id="container-cards" class="cards"></div>
+
+    </div>
+  </section>
 </body>
 </html>

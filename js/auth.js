@@ -1,4 +1,3 @@
-
 function alternarTelas() {
     const containerLogin = document.getElementsByClassName('login-container')[0];
     const containerRegister = document.getElementsByClassName('register-container')[0];

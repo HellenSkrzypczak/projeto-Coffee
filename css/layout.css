@@ -1,0 +1,40 @@
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 2rem;
+}
+
+.card-produto {
+    width: 25rem;
+    min-height: 33rem;
+    background: #4B2C20;
+    border-radius: 1rem;
+    padding: 2rem 2rem 0 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.card-produto:hover {
+    transform: translateY(-5px); /* O card todo sobe um pouquinho */
+    cursor: pointer;
+}
+
+.container-imagem > img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 1rem;
+}
+
+.info-produto {
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* Isso força a div a ocupar todo o espaço entre a imagem e o botão */
+    justify-content: space-between; /* Título em cima, preço/botão embaixo */
+    gap: 1px;
+    padding: 1rem 0;
+}
