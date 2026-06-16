@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee | Catálogo de Cafés</title>
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
+    <script src="js/db.js" type="module"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Montserrat:wght@300;500&family=Oswald&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <script src="js/pages/produtos.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
+</head>
+<body style="background-color: #000000; color: #fff;">
+    <div class="pagina-produtos-layout">
+        <aside class="sidebar-filtros">
+            <div class="bloco-filtro">
+                <h2>CATEGORIA</h2>
+                <div class="grupo-checkbox">
+                    <label>
+                        <input type="checkbox" value="Todos" id="check-todos" checked> 
+                        <span>Todos os Cafés</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filtro-categoria" value="Grãos"> 
+                        <span>Torrados em Grãos</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filtro-categoria" value="Cápsulas"> 
+                        <span>Cápsulas</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filtro-categoria" value="Torrados e Moídos"> 
+                        <span>Torrados e Moídos</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filtro-categoria" value="Drip Coffee"> 
+                        <span>Drip Coffee</span>
+                    </label>
+                </div>
+            </div>
+        </aside>
+
+        <main class="conteudo-produtos">
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> > 
+                <span id="bread-atual">Todos os Cafés</span>
+            </div>
+            <h1 id="titulo-categoria-atual">Cafés</h1>
+            <div id="container-catalogo" class="cards"></div>
+        </main>
+    </div>
+</body>
+</html>

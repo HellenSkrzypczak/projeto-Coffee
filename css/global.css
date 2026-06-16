@@ -1,232 +1,107 @@
-html, input ,button, a {
+/* --- VARIAVEIS DE TEMA (DARK MODE PREMIUM) --- */
+:root {
+    --bg-dark: #0A0A0A;         /* Fundo principal escuro */
+    --bg-section: #14110F;      /* Fundo alternativo para destacar seções */
+    --card-bg: #1E1612;         /* Fundo dos cards (marrom bem escuro) */
+    
+    --primary-color: #7A4B3A;   /* Marrom assinatura */
+    --primary-hover: #9E644E;   /* Hover mais claro */
+    --accent-color: #D4AF37;    /* Dourado para detalhes/preço */
+    
+    --text-light: #F5F5F5;
+    --text-muted: #A39B98;
+}
+.body-light-theme {
+    background-color: #FFFFFF !important;
+    color: #1A1A1A !important;
+}
+.body-light-theme h1, 
+.body-light-theme h2, 
+.body-light-theme h3, 
+.body-light-theme h4 {
+    color: #1A1A1A;
+}
+
+/* --- RESETS GERAIS --- */
+html, body, input, button, a, ul, li, p, h1, h2, h3, h4 {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    all: unset;
+    list-style: none;
+    text-decoration: none;
 }
-h1 {
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+
+html {
+    scroll-behavior: smooth; /* Faz a âncora do menu deslizar suavemente */
 }
+
 body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    margin: 0 auto;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
 }
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px #ffffff81 inset !important;
-    -webkit-text-fill-color: #000000 !important;
-    transition: background-color 5000s ease-in-out 0s;
+
+/* --- TIPOGRAFIA --- */
+h1, h2, h3, h4 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-light);
+}
+
+/* --- BOTÕES E INPUTS --- */
 input {
     padding: 1rem;
     border-radius: 0.5rem;
     border: 1px solid #333;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-light);
     margin-bottom: 1rem;
-    width: 70%;
-}
-input::placeholder {
-    color: #333333;
-    font-style: italic;
-}
-input:focus {
-    border-color: rgb(255, 255, 255);
-    box-shadow: 0 0 2px rgba(255, 254, 254, 0.658);
-}
-input:focus::placeholder {
-    color: transparent;
-}
-
-button {
-    background-color: #4B2C20 /* #333*/;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease-out;
-}
-button:hover {
-    background-color:  #6d402f;
-    transform: translateY(-1px);
-}
-.btn-comprar{
-    background-color: #ffffff6a;
-    min-width: 90%;
-}
-
-header {
-    position: absolute; /* Ou fixed, se quiser que ele siga o scroll */
-    top: 0;
-    left: 0;
     width: 100%;
-    z-index: 10; /* Garante que ele fique ACIMA do vídeo e do overlay */
-    background: transparent; /* Para mostrar o vídeo por baixo */
-}
-.centered {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.fundo-login{
-    background-image: url('../assets/img/login-background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #1a1a1a;
-    height: 100vh;
 }
 
-/* Navegação */
-.container-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0.5rem;
+input:focus {
+    border-color: var(--primary-color);
+    outline: none;
 }
-.nav-group {
-    display: flex;
-    gap: 20px; 
-    flex: 1;
-}
-.nav-group:last-child { justify-content: flex-end;}
-.nav-link {
-    color: #f5f5f5;
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
     font-weight: 500;
     cursor: pointer;
-    transition: text-decoration 0.5s ease, color 0.3s ease, text-shadow 0.5s ease, transform 0.3s ease-out;
-}
-.nav-link:hover {
-    text-decoration: underline;
-    text-decoration-color: #f5f5f5;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
+    border: none;
+    transition: all 0.3s ease;
 }
 
-/* Login */
-.login-container {
-    background-color: #ffffff50;
-    backdrop-filter: blur(5px);
-    padding: 2rem 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 30rem;
-    height: auto;
-    margin: 0 auto;
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
 }
 
-/* Register */
-.register-container {
-    background-color: #ffffff50;
-    backdrop-filter: blur(5px);
-    padding: 2rem 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 30rem;
-    height: auto;
-    margin: 0 auto;
-}
-.hidden { display: none; }
-
-/* Animação Login */
-@keyframes surgirDoCentro {
-    0% {
-        opacity: 0;
-        transform: scale(0.7); /* Começa menor */
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1); /* Termina no tamanho real */
-    }
-}
-.animar-entrada {
-    animation: surgirDoCentro 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-.glass-card {
-    transition: all 0.10s ease-in-out;
-    overflow: hidden;
-}
-
- /* Index */
-.fa-cart-shopping {
-    color: #f5f5f5;
-    transition: transform 0.2s;
-}
-.fa-cart-shopping:hover {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
+.btn-outline {
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--text-light);
+    padding: 12px 24px;
+    border-radius: 4px;
     cursor: pointer;
-}
-.fa-cart-shopping:focus{
-    color: #f5f5f5;
-    outline: 2px solid  #f5f5f5; 
+    transition: all 0.3s ease;
 }
 
-.backgorund-video {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
+.btn-outline:hover {
+    background-color: var(--text-light);
+    color: var(--bg-dark);
 }
 
-.backgorund-video::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 10rem;
-    background: linear-gradient(to bottom, transparent, #000000);
-    z-index: 2;
-}
-.video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Faz o vídeo agir como um background-size: cover */
-    z-index: -2; /* Fica atrás de tudo */
-}
- /* BEST SELERS */
-.section-best-selers {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-    width: 100%;
-    background-color: #000000;
-}
-.section-best-selers > div {
-    min-width: 95vw;
-    min-height: 70vh;
-    border: solid #fff 1rem;
-    border-radius: 1rem;
-    padding: 1rem;
-    text-align: center;
-    margin-bottom: 5rem;
-}
-
-.section-assinatura {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-    background-color: #000000;
-    color: #fff;
-    padding-top: 2rem;
-}
-
-.section-assinatura > img {
-    max-height: 35rem;
-    min-height: 35rem;
-}
+.mt-2 { margin-top: 2rem; }

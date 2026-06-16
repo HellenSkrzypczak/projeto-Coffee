@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Admin | Produtos</title>
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Montserrat:wght@300;400;500&family=Oswald:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    
+    <style>
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding-top: 7rem; /* Espaço para o cabeçalho fixo não cobrir o conteúdo */
+        }
+        
+        /* Estilos customizados para o Mini Menu Administrativo */
+        .nav-link.active-admin {
+            color: var(--accent-color) !important;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 4px;
+        }
+        
+        .admin-form { 
+            background: var(--card-bg); 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            margin-bottom: 3rem; 
+            border: 1px solid #3d2217;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .admin-form h3 {
+            font-family: 'Crimson Pro', serif;
+            text-transform: none;
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        /* Inputs e Selects combinando com o Design do seu E-commerce */
+        .admin-form input, .admin-form select {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid #4B2C20;
+            color: var(--text-light);
+            padding: 0.85rem 1rem;
+            border-radius: 6px;
+            width: 100%;
+            margin-bottom: 1.25rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-form input:focus, .admin-form select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+            background-color: rgba(255, 255, 255, 0.06);
+            outline: none;
+        }
+        
+        .admin-form label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        
+        /* Tabela Admin Premium */
+        .table-responsive-wrapper {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #3d2217;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 4rem;
+        }
+        
+        .admin-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-bottom: 0;
+        }
+        
+        .admin-table th, .admin-table td { 
+            padding: 1.2rem 1.5rem; 
+            text-align: left; 
+            border-bottom: 1px solid rgba(75, 44, 32, 0.3); 
+            color: var(--text-light); 
+            font-family: 'Montserrat', sans-serif;
+            vertical-align: middle;
+        }
+        
+        .admin-table th { 
+            background: var(--bg-section); 
+            color: var(--accent-color); 
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .admin-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        /* Botões */
+        .btn-admin-save {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            text-transform: uppercase;
+        }
+        
+        .btn-admin-save:hover {
+            background-color: var(--primary-hover);
+            color: #fff;
+        }
+        
+        .btn-small { 
+            padding: 6px 14px; 
+            font-size: 0.85rem; 
+            background: #dc3545; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .btn-small:hover {
+            background: #bd2130;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="scrolled">
+        <nav class="container-nav">
+            <div class="nav-group">
+                <img src="assets/img/icon.png" alt="Logo Coffee" style="height: 50px;">
+            </div>
+            <div class="nav-group justify-content-end">
+                <a href="admin-produtos.html" class="nav-link active-admin">Produtos</a>
+                <a href="admin-usuarios.html" class="nav-link">Usuários</a>
+                <a href="index.html" class="nav-link" style="color: var(--accent-color); font-weight: 500;">
+                    <i class="fa-solid fa-arrow-up-right-from-square me-1" style="font-size: 0.85rem;"></i> Ver Site
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4" style="color: var(--text-light); font-family: 'Oswald', sans-serif; font-size: 2.5rem; border-left: 4px solid var(--primary-color); padding-left: 15px;">
+                    Gerenciamento de Produtos
+                </h1>
+            </div>
+        </div>
+
+        <div class="admin-form">
+            <h3 class="mb-4">Adicionar Novo Produto</h3>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <label for="prod-nome">Nome do Produto</label>
+                    <input type="text" id="prod-nome" placeholder="Ex: Coffee Bourbon Amarelo em Grãos 250g">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="prod-preco">Preço (R$)</label>
+                    <input type="number" step="0.01" id="prod-preco" placeholder="Ex: 58.50">
+                </div>
+                <div class="col-md-4">
+                    <label for="prod-categoria">Categoria</label>
+                    <select id="prod-categoria">
+                        <option value="">Selecione uma categoria...</option>
+                        <option value="Grãos">Torrados em Grãos</option>
+                        <option value="Cápsulas">Cápsulas</option>
+                        <option value="Torrados e Moídos">Torrados e Moídos</option>
+                        <option value="Drip Coffee">Drip Coffee</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="prod-imagem">Caminho da Imagem</label>
+                    <input type="text" id="prod-imagem" placeholder="Ex: assets/img/cafe.jpg">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <button id="btn-salvar-prod" class="btn-admin-save">Salvar Produto</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mb-4" style="font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: var(--text-light);">
+                    Produtos Cadastrados
+                </h2>
+                <div class="table-responsive-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%">ID</th>
+                                <th style="width: 45%">Nome</th>
+                                <th style="width: 20%">Categoria</th>
+                                <th style="width: 15%">Preço</th>
+                                <th style="width: 5%">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-produtos">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { ProdutoCafe } from "./js/models.js"; 
+
+        const dbProdutos = new PouchDB('coffee_produtos');
+
+        async function carregarTabela() {
+            const tabela = document.getElementById('tabela-produtos');
+            tabela.innerHTML = "";
+            
+            const resultado = await dbProdutos.allDocs({ include_docs: true });
+            if (resultado && resultado.rows) {
+                resultado.rows.forEach(row => {
+                    const p = row.doc;
+                    tabela.innerHTML += `
+                        <tr>
+                            <td style="font-family: monospace; color: var(--text-muted);">${p._id}</td>
+                            <td style="font-weight: 500;">${p.nome}</td>
+                            <td><span class="badge" style="background-color: var(--primary-color) !important; padding: 6px 10px; font-weight: 400;">${p.categoria}</span></td>
+                            <td style="color: var(--accent-color); font-weight: 600;">R$ ${parseFloat(p.preco).toFixed(2)}</td>
+                            <td>
+                                <button class="btn-small" onclick="deletarProduto('${p._id}')">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            }
+        }
+
+        window.deletarProduto = async (id) => {
+            if(confirm("Excluir este produto?")) {
+                const doc = await dbProdutos.get(id);
+                await dbProdutos.remove(doc);
+                carregarTabela();
+            }
+        }
+
+        document.getElementById('btn-salvar-prod').addEventListener('click', async () => {
+            const nome = document.getElementById('prod-nome').value;
+            const preco = document.getElementById('prod-preco').value;
+            const cat = document.getElementById('prod-categoria').value;
+            const img = document.getElementById('prod-imagem').value || 'assets/img/cafe.jpg';
+            const idAutomatico = Date.now().toString();
+
+            if( !nome || !preco || !cat) return alert('Preencha todos os campos básicos!');
+
+            const novoProd = new ProdutoCafe(idAutomatico, nome, preco, cat, [], 'Média', img);
+            await dbProdutos.put(novoProd);
+            alert('Produto salvo!');
+            
+            document.getElementById('prod-nome').value = "";
+            document.getElementById('prod-preco').value = "";
+            document.getElementById('prod-categoria').value = "";
+            document.getElementById('prod-imagem').value = "";
+            
+            carregarTabela();
+        });
+
+        carregarTabela();
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessórios | Coffee</title>
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
+    <script src="js/db.js" type="module"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Montserrat:wght@300;400;500&family=Oswald:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <script src="js/main.js" type="module"></script>
+
+    <style>
+        .page-header-spacing {
+            padding-top: 140px;
+            min-height: 60vh;
+        }
+        .grid-acessorios {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 5rem;
+        }
+    </style>
+</head>
+<body style="background-color: var(--bg-dark);">
+
+    <main class="container page-header-spacing">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h1 class="section-title" style="margin-bottom: 1rem;">Equipamentos e Acessórios</h1>
+            <p style="color: var(--text-muted);">Tudo o que você precisa para extrair o melhor ritual do seu café especial.</p>
+        </div>
+
+        <div id="container-acessorios" class="grid-acessorios">
+            <p style="color: var(--text-muted); text-align: center; grid-column: 1/-1;">Carregando acessórios incríveis...</p>
+        </div>
+    </main>
+
+    <script type="module">
+        import { buscarTodosProdutos } from './js/db.js';
+
+        const formatarMoeda = (valor) => {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(valor);
+        };
+
+        function criarCardHtml(produto) {
+            return `
+                <div class="card-produto">
+                    <a href="produto.html?id=${produto._id}" style="color: inherit; text-decoration: none; display: block; width: 100%;">
+                        <div class="container-imagem">
+                            <img src="${produto.imagem}" alt="${produto.nome}">
+                        </div>
+                        <div class="info-produto">
+                            <div>
+                                <h3>${produto.nome}</h3>
+                                <p class="preco">${formatarMoeda(produto.preco)}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <button class="btn-comprar" data-id="${produto._id}">ADICIONAR AO CARRINHO</button>
+                </div>
+            `;
+        }
+
+        async function carregarAcessorios() {
+            const container = document.getElementById('container-acessorios');
+            const todosProdutos = await buscarTodosProdutos();
+            const acessorios = todosProdutos.filter(p => p.categoria === 'Acessórios' || p.categoria === 'Acessorios');
+
+            if (!acessorios || acessorios.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem 0;">
+                        <i class="fa-solid fa-boxes-open" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                        <p style="color: var(--text-muted);">Nenhum acessório cadastrado no painel administrativo ainda!</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            acessorios.forEach(item => {
+                container.innerHTML += criarCardHtml(item);
+            });
+        }
+
+        carregarAcessorios();
+    </script>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <img src="assets/img/icon.png" alt="Logo" class="footer-logo">
+                <p>Elevando o padrão do seu café diário. De grão em grão.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <a href="produtos.html">Nossos Cafés</a>
+                <a href="assinaturas.html">Assinaturas</a>
+                <a href="index.html#sobre">Nossa História</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <p><i class="fa-solid fa-envelope"></i> ola@coffee.com.br</p>
+                <p><i class="fa-solid fa-phone"></i> (11) 99999-9999</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Coffee.</p>
+        </div>
+    </footer>
+</body>
+</html>

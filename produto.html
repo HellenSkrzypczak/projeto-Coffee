@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee | Produto</title>
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="js/db.js" type="module"></script>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <script src="js/pages/produto-detalhe.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
+</head>
+<body>
+    <section class="secao-produto">
+        <div class="container">
+
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> >
+                <a href="produtos.html">Produtos</a> >
+                <span id="bread-produto-nome">Carregando...</span>
+            </div>
+
+            <div class="produto-detalhe-layout">
+
+                <div class="produto-imagem">
+                    <img id="prod-img" src="" alt="Imagem do Café" class="produto-imagem-img">
+                </div>
+
+                <div class="produto-info">
+                    <div>
+                        <h1 id="prod-nome" class="produto-nome">Carregando...</h1>
+                        <span id="prod-preco" class="produto-preco">R$ 0,00</span>
+                    </div>
+
+                    <p id="prod-desc" class="produto-desc">...</p>
+
+                    <div>
+                        <h4 class="produto-subtitulo">NOTAS SENSORIAIS:</h4>
+                        <div id="prod-notas-container" class="container-tags-sensoriais"></div>
+                    </div>
+
+                    <div class="ficha-tecnica">
+                        <h4 class="produto-subtitulo">ESPECIFICAÇÕES DO LOTE:</h4>
+                        <div id="prod-especificacoes"></div>
+                    </div>
+
+                    <div class="seletor-moagem">
+                        <h4 class="produto-subtitulo">Escolha a Moagem:</h4>
+                        <div class="seletor-moagem-opcoes">
+                            <button class="btn-outline">Em Grãos</button>
+                            <button class="btn-outline">Filtro</button>
+                            <button class="btn-outline">Prensa Francesa</button>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary btn-adicionar-carrinho">
+                        ADICIONAR AO CARRINHO
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</body>
+</html>
